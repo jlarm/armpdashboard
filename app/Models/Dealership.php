@@ -9,6 +9,7 @@ use Carbon\CarbonInterface;
 use Database\Factories\DealershipFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * @property-read int $id
@@ -36,5 +37,13 @@ final class Dealership extends Model
             'created_at' => 'datetime',
             'updated_at' => 'datetime',
         ];
+    }
+
+    /**
+     * @return BelongsToMany<User, $this>
+     */
+    public function consultants(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'dealership_user');
     }
 }

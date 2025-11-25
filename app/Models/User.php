@@ -9,6 +9,7 @@ use Carbon\CarbonInterface;
 use Database\Factories\UserFactory;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -52,5 +53,13 @@ final class User extends Authenticatable implements MustVerifyEmail
             'created_at' => 'datetime',
             'updated_at' => 'datetime',
         ];
+    }
+
+    /**
+     * @return BelongsToMany<Dealership, $this>
+     */
+    public function dealerships(): BelongsToMany
+    {
+        return $this->belongsToMany(Dealership::class);
     }
 }
