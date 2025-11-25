@@ -12,6 +12,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Staudenmeir\EloquentHasManyDeep\HasManyDeep;
+use Staudenmeir\EloquentHasManyDeep\HasRelationships;
 
 /**
  * @property-read int $id
@@ -25,7 +27,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 final class Dealership extends Model
 {
     /** @use HasFactory<DealershipFactory> */
-    use HasFactory, SoftDeletes;
+    use HasFactory, HasRelationships, SoftDeletes;
 
     /**
      * @return array<string, string>
@@ -57,5 +59,18 @@ final class Dealership extends Model
     public function stores(): HasMany
     {
         return $this->hasMany(Store::class);
+    }
+
+    /**
+     * @return HasManyDeep<User, $this>
+     */
+    public function employees(): HasManyDeep
+    {
+        return $this->hasManyDeep(
+            User::class,
+            [Store::class, 'store_user'],
+            ['dealership_id', 'store_id', 'id'],
+            ['id', 'id', 'user_id']
+        )->distinct();
     }
 }

@@ -10,6 +10,7 @@ use Database\Factories\StoreFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -62,5 +63,13 @@ final class Store extends Model
     public function dealership(): BelongsTo
     {
         return $this->belongsTo(Dealership::class);
+    }
+
+    /**
+     * @return BelongsToMany<User, $this>
+     */
+    public function employees(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'store_user');
     }
 }

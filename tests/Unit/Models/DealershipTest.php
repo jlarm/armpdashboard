@@ -54,3 +54,19 @@ test('dealership can have many stores', function (): void {
 
     expect($dealership->stores)->toHaveCount(3);
 });
+
+test('dealership can access employees through stores', function (): void {
+    $dealership = Dealership::factory()->create();
+    $store1 = Store::factory()->create(['dealership_id' => $dealership->id]);
+    $store2 = Store::factory()->create(['dealership_id' => $dealership->id]);
+
+    $employee1 = User::factory()->create();
+    $employee2 = User::factory()->create();
+    $employee3 = User::factory()->create();
+
+    $store1->employees()->attach([$employee1->id, $employee2->id]);
+    $store2->employees()->attach([$employee2->id, $employee3->id]);
+
+    expect($dealership->employees)->toHaveCount(3)
+        ->and($dealership->employees->pluck('id')->toArray())->toContain($employee1->id, $employee2->id, $employee3->id);
+});

@@ -59,10 +59,22 @@ final class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
+     * As a Consultant
+     *
      * @return BelongsToMany<Dealership, $this>
      */
     public function dealerships(): BelongsToMany
     {
-        return $this->belongsToMany(Dealership::class);
+        return $this->belongsToMany(Dealership::class, 'dealership_user')
+            ->withTimestamps();
+    }
+
+    /**
+     * @return BelongsToMany<Store, $this>
+     */
+    public function stores(): BelongsToMany
+    {
+        return $this->belongsToMany(Store::class, 'store_user')
+            ->withTimestamps();
     }
 }

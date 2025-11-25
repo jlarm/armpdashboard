@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Models\Dealership;
 use App\Models\Store;
+use App\Models\User;
 
 test('to array', function (): void {
     $store = Store::factory()->create()->refresh();
@@ -32,4 +33,13 @@ test('store belongs to dealership', function (): void {
     $store = Store::factory()->create(['dealership_id' => $dealership->id]);
 
     expect($store->dealership->id)->toBe($dealership->id);
+});
+
+test('store can have many employees', function (): void {
+    $store = Store::factory()->create();
+    $employees = User::factory(3)->create();
+
+    $store->employees()->attach($employees);
+
+    expect($store->employees)->toHaveCount(3);
 });

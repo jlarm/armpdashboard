@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Models\Dealership;
+use App\Models\Store;
 use App\Models\User;
 
 test('to array', function (): void {
@@ -48,4 +49,13 @@ test('user can detach a dealership', function (): void {
     $user->dealerships()->detach($dealership);
 
     expect($user->dealerships)->toHaveCount(0);
+});
+
+test('user can have many stores', function (): void {
+    $user = User::factory()->create();
+    $stores = Store::factory(3)->create();
+
+    $user->stores()->attach($stores);
+
+    expect($user->stores)->toHaveCount(3);
 });
