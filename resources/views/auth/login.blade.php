@@ -2,21 +2,11 @@
     <div class="flex min-h-screen">
         <div class="flex-1 flex justify-center items-center">
             <div class="w-80 max-w-80 space-y-6">
-                <div class="flex justify-center opacity-50">
+                <div class="flex justify-center">
                     <a href="/" class="group flex items-center gap-3">
                         <div>
-                            <svg class="h-4 text-zinc-800 dark:text-white" viewBox="0 0 18 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <g>
-                                    <line x1="1" y1="5" x2="1" y2="10" stroke="currentColor" stroke-width="2" stroke-linecap="round"></line>
-                                    <line x1="5" y1="1" x2="5" y2="8" stroke="currentColor" stroke-width="2" stroke-linecap="round"></line>
-                                    <line x1="9" y1="5" x2="9" y2="10" stroke="currentColor" stroke-width="2" stroke-linecap="round"></line>
-                                    <line x1="13" y1="1" x2="13" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"></line>
-                                    <line x1="17" y1="5" x2="17" y2="10" stroke="currentColor" stroke-width="2" stroke-linecap="round"></line>
-                                </g>
-                            </svg>
+                            <img class="size-14" src="{{ asset('favicon.svg') }}" alt="">
                         </div>
-
-                        <span class="text-xl font-semibold text-zinc-800 dark:text-white">flux</span>
                     </a>
                 </div>
 
