@@ -9,6 +9,7 @@ use Carbon\CarbonInterface;
 use Database\Factories\StoreFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property-read int $id
@@ -50,5 +51,13 @@ final class Store extends Model
             'created_at' => 'datetime',
             'updated_at' => 'datetime',
         ];
+    }
+
+    /**
+     * @return BelongsTo<Dealership, $this>
+     */
+    public function dealership(): BelongsTo
+    {
+        return $this->belongsTo(Dealership::class);
     }
 }

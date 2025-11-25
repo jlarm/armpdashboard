@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Models\Dealership;
 use App\Models\Store;
 
 test('to array', function (): void {
@@ -23,4 +24,11 @@ test('to array', function (): void {
             'created_at',
             'updated_at',
         ]);
+});
+
+test('store belongs to dealership', function (): void {
+    $dealership = Dealership::factory()->create();
+    $store = Store::factory()->create(['dealership_id' => $dealership->id]);
+
+    expect($store->dealership->id)->toBe($dealership->id);
 });
