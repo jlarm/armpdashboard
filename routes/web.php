@@ -6,3 +6,4 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', fn (): View => view('welcome'));
+Route::view('/login', 'auth.login')->name('login');
