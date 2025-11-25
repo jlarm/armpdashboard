@@ -23,6 +23,7 @@ test('to array', function (): void {
             'timezone',
             'created_at',
             'updated_at',
+            'deleted_at',
         ]);
 });
 

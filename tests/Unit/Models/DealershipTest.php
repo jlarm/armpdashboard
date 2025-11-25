@@ -18,6 +18,7 @@ test('to array', function (): void {
             'type',
             'created_at',
             'updated_at',
+            'deleted_at',
         ]);
 });
 

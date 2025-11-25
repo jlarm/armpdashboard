@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('timezone')->default('UTC');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
